@@ -1,3 +1,4 @@
+import CitySection from './components/CitySection.jsx'
 import Hero from './components/Hero.jsx'
 import Navbar from './components/Navbar.jsx'
 import Services from './components/Services.jsx'
@@ -10,6 +11,7 @@ function App() {
       <Hero />
       <Services />
       <WhyUs />
+      <CitySection />
     </div>
   )
 }
