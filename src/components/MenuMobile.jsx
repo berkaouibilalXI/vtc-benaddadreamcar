@@ -1,5 +1,5 @@
 import {X, MessageCircle} from "lucide-react"
-export default function MobileMenu({ isOpen, onClose, navLinks }) {
+export default function MenuMobile({ isOpen, onClose, navLinks }) {
   return (
     <div
       className={`fixed inset-0 z-[60] flex flex-col bg-white p-6 transition-transform duration-300 lg:hidden ${
