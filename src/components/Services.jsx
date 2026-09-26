@@ -1,69 +1,78 @@
-import { ChevronRight, MessageCircle } from "lucide-react";
-import { services } from "../consts/consts.js";
+import { Icon } from './IconSprite';
+import MediaSlot from './MediaSlot';
+import Reveal from './Reveal';
+import { useLanguage } from '../context/LanguageContext';
+
+const SERVICES = [
+  {
+    id: 'airport',
+    img: '/assets/service-airport.webp',
+    titleKey: 'services.airport.title',
+    subKey: 'services.airport.sub',
+    descKey: 'services.airport.desc',
+    ctaKey: 'cta.book',
+  },
+  {
+    id: 'hotel',
+    img: '/assets/service-hotel.webp',
+    titleKey: 'services.hotel.title',
+    subKey: 'services.hotel.sub',
+    descKey: 'services.hotel.desc',
+    ctaKey: 'cta.book',
+  },
+  {
+    id: 'business',
+    img: '/assets/service-business.webp',
+    titleKey: 'services.business.title',
+    subKey: 'services.business.sub',
+    descKey: 'services.business.desc',
+    ctaKey: 'cta.contact',
+  },
+  {
+    id: 'disposal',
+    img: '/assets/service-chauffeur.webp',
+    titleKey: 'services.disposal.title',
+    subKey: 'services.disposal.sub',
+    descKey: 'services.disposal.desc',
+    ctaKey: 'cta.quote',
+  },
+  {
+    id: 'outoftown',
+    img: '/assets/service-outside.webp',
+    titleKey: 'services.outoftown.title',
+    subKey: null,
+    descKey: 'services.outoftown.desc2',
+    ctaKey: 'cta.quote',
+  },
+];
 
 export default function Services() {
+  const { t, contacts } = useLanguage();
+
   return (
     <section className="section" id="services">
-      <div className="container-site">
-        <div className="mb-8">
+      <div className="container">
+        <Reveal className="section-head">
           <div className="eyebrow-rule" />
+          <h2 className="section-title">{t('services.title')}</h2>
+          <p className="section-sub">{t('services.sub')}</p>
+        </Reveal>
 
-          <h2 className="section-title">
-            Nos services
-          </h2>
-
-          <p className="section-sub">
-            Un service adapté à chacun de vos déplacements.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => {
-            const Icon = service.icon;
-
-            return (
-              <article
-                key={service.title}
-                className="group flex items-center gap-6 rounded-card border border-line bg-white p-4 shadow-card transition-all duration-500 hover:-translate-y-0.5 hover:border-transparent hover:shadow-[0_8px_22px_rgba(17,17,17,0.08)] "
-              >
-                <div className="media-slot h-19 w-19 shrink-0 rounded-sm">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-
-                <div className="min-w-0">
-                  <div className="mb-2 flex items-center gap-2">
-                    <Icon className="h-4 w-4 shrink-0 text-red" />
-
-                    <h3 className="font-display text-h3 font-bold">
-                      {service.title}
-                    </h3>
-                  </div>
-
-                  <p className="text-small font-medium">
-                    {service.subtitle}
-                  </p>
-
-                  <p className="mt-1 text-small">
-                    {service.description}
-                  </p>
-
-                  <a
-                    href="#contact"
-                    className="mt-2 inline-flex items-center gap-1.5 font-display text-[0.9rem] font-bold text-red"
-                  >
-                    <MessageCircle className="h-3.5 w-3.5" />
-                    {service.action}
-                    <ChevronRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-0.5" />
-                  </a>
-                </div>
-              </article>
-            );
-          })}
+        <div className="services-grid">
+          {SERVICES.map((service, i) => (
+            <Reveal as="article" className="service-card" key={service.id} delay={Math.min(i * 0.05, 0.2)}>
+              <MediaSlot className="service-media" src={service.img} alt={t(service.titleKey)} />
+              <div className="service-body">
+                <h3>{t(service.titleKey)}</h3>
+                {service.subKey && <p>{t(service.subKey)}</p>}
+                <p>{t(service.descKey)}</p>
+                <a href={contacts.waLink} target="_blank" rel="noopener" className="link-cta">
+                  <span>{t(service.ctaKey)}</span>
+                  <Icon name="chevron" />
+                </a>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
