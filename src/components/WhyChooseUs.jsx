@@ -1,6 +1,7 @@
 import { Icon } from './IconSprite';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
+import { container, section, sectionHead, eyebrowRule, sectionTitle } from '../styles/ui';
 
 const REASONS = [
   { icon: 'clock', titleKey: 'why.punctuality.title', descKey: 'why.punctuality.desc' },
@@ -14,22 +15,22 @@ export default function WhyChooseUs() {
   const { t } = useLanguage();
 
   return (
-    <section className="section" id="why" style={{ background: 'var(--grey-light)' }}>
-      <div className="container">
-        <Reveal className="section-head">
-          <div className="eyebrow-rule" />
-          <h2 className="section-title">{t('why.title')}</h2>
+    <section className={`${section} bg-grey-light`} id="why">
+      <div className={container}>
+        <Reveal className={sectionHead}>
+          <div className={eyebrowRule} />
+          <h2 className={sectionTitle}>{t('why.title')}</h2>
         </Reveal>
 
-        <div className="why-list">
+        <div className="flex flex-col gap-8 desktop:grid desktop:grid-cols-2 desktop:gap-x-12 desktop:gap-y-8">
           {REASONS.map((reason, i) => (
-            <Reveal className="why-item" key={reason.icon} delay={Math.min(i * 0.05, 0.2)}>
-              <div className="why-icon">
-                <Icon name={reason.icon} />
+            <Reveal className="flex items-start gap-6" key={reason.icon} delay={Math.min(i * 0.05, 0.2)}>
+              <div className="mt-0.5 shrink-0 text-ink">
+                <Icon name={reason.icon} className="h-[22px] w-[22px] shrink-0 stroke-current fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]" />
               </div>
               <div>
-                <h3>{t(reason.titleKey)}</h3>
-                <p>{t(reason.descKey)}</p>
+                <h3 className="text-[clamp(18px,3vw,20px)] font-display font-bold">{t(reason.titleKey)}</h3>
+                <p className="mt-1 max-w-[40ch] text-[clamp(13px,1.4vw,14px)]">{t(reason.descKey)}</p>
               </div>
             </Reveal>
           ))}

@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Icon } from './IconSprite';
 import { useLanguage } from '../context/LanguageContext';
+import { btnPrimary, btnBlock } from '../styles/ui';
 
 const NAV_LINKS = [
   { href: '#hero', key: 'nav.home' },
@@ -17,34 +18,38 @@ export default function MobileMenu({ open, onClose }) {
     <AnimatePresence>
       {open && (
         <motion.div
-          className="mobile-menu open"
+          className="fixed inset-0 z-[60] flex flex-col bg-white p-6 desktop:hidden"
           initial={{ x: '100%' }}
           animate={{ x: 0 }}
           exit={{ x: '100%' }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
-          <div className="mobile-menu-top">
-            <div className="brand">
+          <div className="flex h-14 items-center justify-between">
+            <div className="font-display text-[1.05rem] font-extrabold leading-none tracking-[0.02em]">
               BENADDA
               <br />
-              <span>DREAMCAR</span>
+              <span className="mt-0.5 block text-[0.6rem] font-bold tracking-[0.25em] text-red">DREAMCAR</span>
             </div>
-            <button type="button" className="menu-btn" aria-label="Fermer le menu" onClick={onClose}>
-              <Icon name="close" />
+            <button type="button" className="p-1.5" aria-label="Fermer le menu" onClick={onClose}>
+              <Icon name="close" className="h-[26px] w-[26px] shrink-0 stroke-current fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]" />
             </button>
           </div>
 
-          <div className="mobile-menu-links">
+          <div className="mt-12 flex flex-col gap-8">
             {NAV_LINKS.map((link) => (
-              <a key={link.key} href={link.href} onClick={onClose}>
+              <a key={link.key} href={link.href} onClick={onClose} className="font-display text-2xl font-bold">
                 {t(link.key)}
               </a>
             ))}
           </div>
 
-          <div className="mobile-menu-footer">
-            <a href={contacts.waLink} target="_blank" rel="noopener" className="btn btn-primary btn-block">
-              <Icon name="whatsapp" className="icon btn-icon" style={{ stroke: 'none', fill: 'currentColor' }} />
+          <div className="mt-auto flex flex-col gap-4">
+            <a href={contacts.waLink} target="_blank" rel="noopener" className={`${btnPrimary} ${btnBlock}`}>
+              <Icon
+                name="whatsapp"
+                className="h-[18px] w-[18px] shrink-0"
+                style={{ stroke: 'none', fill: 'currentColor' }}
+              />
               <span>{t('cta.whatsapp')}</span>
             </a>
           </div>

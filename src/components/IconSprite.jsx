@@ -92,7 +92,9 @@ export default function IconSprite() {
   );
 }
 
-export function Icon({ name, className = 'icon', style, rotate }) {
+import { iconDefault } from '../styles/ui';
+
+export function Icon({ name, className = iconDefault, style, rotate }) {
   return (
     <svg className={className} style={style}>
       <use href={`#i-${name}`} transform={rotate ? `rotate(${rotate} 12 12)` : undefined} />

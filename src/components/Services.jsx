@@ -2,11 +2,12 @@ import { Icon } from './IconSprite';
 import MediaSlot from './MediaSlot';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
+import { container, section, sectionHead, eyebrowRule, sectionTitle, sectionSub, linkCta, linkCtaIcon } from '../styles/ui';
 
 const SERVICES = [
   {
     id: 'airport',
-    img: '/assets/service-airport.webp',
+    img: '/assets/service-airport.png',
     titleKey: 'services.airport.title',
     subKey: 'services.airport.sub',
     descKey: 'services.airport.desc',
@@ -14,7 +15,7 @@ const SERVICES = [
   },
   {
     id: 'hotel',
-    img: '/assets/service-hotel.webp',
+    img: '/assets/service-hotel.png',
     titleKey: 'services.hotel.title',
     subKey: 'services.hotel.sub',
     descKey: 'services.hotel.desc',
@@ -22,7 +23,7 @@ const SERVICES = [
   },
   {
     id: 'business',
-    img: '/assets/service-business.webp',
+    img: '/assets/service-business.png',
     titleKey: 'services.business.title',
     subKey: 'services.business.sub',
     descKey: 'services.business.desc',
@@ -30,7 +31,7 @@ const SERVICES = [
   },
   {
     id: 'disposal',
-    img: '/assets/service-chauffeur.webp',
+    img: '/assets/service-chauffeur.png',
     titleKey: 'services.disposal.title',
     subKey: 'services.disposal.sub',
     descKey: 'services.disposal.desc',
@@ -38,7 +39,7 @@ const SERVICES = [
   },
   {
     id: 'outoftown',
-    img: '/assets/service-outside.webp',
+    img: '/assets/service-outside.png',
     titleKey: 'services.outoftown.title',
     subKey: null,
     descKey: 'services.outoftown.desc2',
@@ -50,25 +51,30 @@ export default function Services() {
   const { t, contacts } = useLanguage();
 
   return (
-    <section className="section" id="services">
-      <div className="container">
-        <Reveal className="section-head">
-          <div className="eyebrow-rule" />
-          <h2 className="section-title">{t('services.title')}</h2>
-          <p className="section-sub">{t('services.sub')}</p>
+    <section className={section} id="services">
+      <div className={container}>
+        <Reveal className={sectionHead}>
+          <div className={eyebrowRule} />
+          <h2 className={sectionTitle}>{t('services.title')}</h2>
+          <p className={sectionSub}>{t('services.sub')}</p>
         </Reveal>
 
-        <div className="services-grid">
+        <div className="grid grid-cols-1 gap-4 tablet:grid-cols-2 desktop:grid-cols-3">
           {SERVICES.map((service, i) => (
-            <Reveal as="article" className="service-card" key={service.id} delay={Math.min(i * 0.05, 0.2)}>
-              <MediaSlot className="service-media" src={service.img} alt={t(service.titleKey)} />
-              <div className="service-body">
-                <h3>{t(service.titleKey)}</h3>
-                {service.subKey && <p>{t(service.subKey)}</p>}
-                <p>{t(service.descKey)}</p>
-                <a href={contacts.waLink} target="_blank" rel="noopener" className="link-cta">
+            <Reveal
+              as="article"
+              className="flex items-center gap-6 rounded-card border border-line bg-white p-4 shadow-card transition-[box-shadow,border-color,transform] duration-200 ease-out hover:-translate-y-0.5 hover:border-transparent hover:shadow-card-hover"
+              key={service.id}
+              delay={Math.min(i * 0.05, 0.2)}
+            >
+              <MediaSlot className="h-19 w-19 shrink-0 rounded-xl" src={service.img} alt={t(service.titleKey)} />
+              <div>
+                <h3 className="text-[clamp(18px,3vw,20px)] font-display font-bold">{t(service.titleKey)}</h3>
+                {service.subKey && <p className="mt-1 text-[clamp(13px,1.4vw,14px)]">{t(service.subKey)}</p>}
+                <p className="mt-1 text-[clamp(13px,1.4vw,14px)]">{t(service.descKey)}</p>
+                <a href={contacts.waLink} target="_blank" rel="noopener" className={`mt-2 ${linkCta}`}>
                   <span>{t(service.ctaKey)}</span>
-                  <Icon name="chevron" />
+                  <Icon name="chevron" className={linkCtaIcon} />
                 </a>
               </div>
             </Reveal>

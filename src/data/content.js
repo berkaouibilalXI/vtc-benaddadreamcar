@@ -1,3 +1,6 @@
+/* ============================================================
+   Contenu FR / EN
+   ============================================================ */
 export const CONTENT = {
   fr: {
     'nav.home': 'Accueil',
@@ -6,6 +9,7 @@ export const CONTENT = {
     'nav.partners': 'Hôtels & entreprises',
     'nav.contact': 'Contact',
     'cta.whatsapp': 'RÉSERVER SUR WHATSAPP',
+    'cta.call': 'Appeler',
     'cta.book': 'Réserver',
     'cta.contact': 'Nous contacter',
     'cta.quote': 'Demander un devis',
@@ -115,6 +119,7 @@ export const CONTENT = {
     'nav.partners': 'Hotels & businesses',
     'nav.contact': 'Contact',
     'cta.whatsapp': 'BOOK ON WHATSAPP',
+    'cta.call': 'Call',
     'cta.book': 'Book',
     'cta.contact': 'Contact us',
     'cta.quote': 'Request a quote',

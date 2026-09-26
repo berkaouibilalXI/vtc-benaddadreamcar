@@ -1,4 +1,4 @@
-export default function TopoMotif({ className = 'topo' }) {
+export default function TopoMotif({ className = 'pointer-events-none absolute inset-0 opacity-[0.18]' }) {
   return (
     <svg className={className} viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
       <path
