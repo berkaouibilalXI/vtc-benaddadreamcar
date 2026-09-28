@@ -24,7 +24,7 @@ jobs:
     - name: Build Vite Frontend Assets
       run: npm run build
 
-    - name: Synchronize Files via FTP
+    -     - name: Synchronize Files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_SERVER }}
@@ -32,11 +32,15 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./ 
         server-dir: ./
+        protocol: ftps
+        security: loose
+        timeout: 60000
         exclude: |
           **/.git*
           **/.git*/**
           **/node_modules/**
           .github/**
+
 
     - name: Trigger Node.js App Restart
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
