@@ -3,7 +3,7 @@
 on:
   push:
     branches:
-      - main
+      - main # Change this to 'master' if your default branch uses that name
 
 jobs:
   build-and-deploy:
@@ -24,7 +24,7 @@ jobs:
     - name: Build Vite Frontend Assets
       run: npm run build
 
-    -     - name: Synchronize Files via FTP
+    - name: Synchronize Files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_SERVER }}
@@ -34,13 +34,12 @@ jobs:
         server-dir: ./
         protocol: ftps
         security: loose
-        timeout: 60000
+        timeout: 90000
         exclude: |
           **/.git*
           **/.git*/**
           **/node_modules/**
           .github/**
-
 
     - name: Trigger Node.js App Restart
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -48,5 +47,8 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
+        protocol: ftps
+        security: loose
+        timeout: 90000
         local-dir: ./tmp/
         server-dir: ./tmp/
