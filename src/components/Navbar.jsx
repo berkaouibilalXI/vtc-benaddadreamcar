@@ -17,7 +17,7 @@ export default function Navbar({ onOpenMenu }) {
     <nav className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur-md">
       <div className={`${container} flex h-16 items-center justify-start gap-6`}>
         <a href="#hero" className="font-display text-[1.05rem] font-extrabold leading-none tracking-[0.02em]">
-          <img src="/logo-black.png" alt="LOGO" width={80}/>
+          <img src="/logo-black.png" alt="LOGO" width={75}/>
         </a>
 
         <div className="hidden flex-1 items-center gap-8 text-[0.9rem] font-semibold desktop:flex">
