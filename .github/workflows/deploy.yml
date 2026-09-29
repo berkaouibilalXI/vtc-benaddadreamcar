@@ -19,7 +19,7 @@ jobs:
       - run: npm run build
 
       - name: Deploy via SFTP
-        uses: milanmk/actions-file-deployer@<PINNED_SHA_OR_TAG>
+        uses: milanmk/actions-file-deployer@master
         with:
           remote-protocol: sftp
           remote-host: 'bennadda-dreamcar.com'
