@@ -3,7 +3,7 @@
 on:
   push:
     branches:
-      - main
+      - main # Change this to 'master' if your default branch uses that name
 
 jobs:
   build-and-deploy:
@@ -25,11 +25,12 @@ jobs:
       run: npm run build
 
     - name: Synchronize Files via SFTP
-      uses: pressdown/sftp-upload-action@v2
+      uses: milanmk/actions-file-deployer@master
       with:
-        host: ${{ secrets.SFTP_HOST }}
-        username: 'gmzrkfea'
-        password: ${{ secrets.SFTP_PASSWORD }}
-        port: 22
-        local_path: './'
-        remote_path: '/home/gmzrkfea/repositories/vtc-benaddadreamcar'
+        remote-protocol: sftp                   # Forces secure SFTP file delivery
+        remote-host: '://bennadda-dreamcar.com' # Your cPanel host destination domain
+        remote-port: 22                         # Standard secure SSH port
+        remote-user: 'gmzrkfea'                 # Your verified cPanel username
+        remote-password: ${{ secrets.SFTP_PASSWORD }} # Your cPanel account password
+        remote-path: '/home/gmzrkfea/repositories/vtc-benaddadreamcar' # Document root folder path
+        sync: delta                             # Syncs only modified files to optimize upload speed
