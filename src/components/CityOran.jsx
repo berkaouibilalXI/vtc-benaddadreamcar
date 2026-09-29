@@ -1,4 +1,4 @@
-import { Icon } from './IconSprite';
+import { Plane, Building, Pin, History, Briefcase, Route } from 'lucide-react';
 import MediaSlot from './MediaSlot';
 import TopoMotif from './TopoMotif';
 import Reveal from './Reveal';
@@ -6,12 +6,12 @@ import { useLanguage } from '../context/LanguageContext';
 import { container, section, eyebrowRule, btnPrimary } from '../styles/ui';
 
 const CATEGORIES = [
-  { icon: 'plane', key: 'city.cat.airport' },
-  { icon: 'building', key: 'city.cat.hotels' },
-  { icon: 'pin', key: 'city.cat.downtown' },
-  { icon: 'badge247', key: 'city.cat.events' },
-  { icon: 'briefcase', key: 'city.cat.business' },
-  { icon: 'route', key: 'city.cat.tourism' },
+  { Icon: Plane, key: 'city.cat.airport' },
+  { Icon: Building, key: 'city.cat.hotels' },
+  { Icon: Pin, key: 'city.cat.downtown' },
+  { Icon: History, key: 'city.cat.events' },
+  { Icon: Briefcase, key: 'city.cat.business' },
+  { Icon: Route, key: 'city.cat.tourism' },
 ];
 
 export default function CityOran() {
@@ -20,7 +20,7 @@ export default function CityOran() {
   return (
     <section className={`${section} relative overflow-hidden bg-ink text-white`} id="city">
       <MediaSlot className="absolute inset-0 z-0" src="/assets/oran-coast.webp" alt={t('city.imgAlt')} optional />
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-ink/55 to-ink/75" />
+      <div className="absolute inset-0 z-1 bg-linear-to-b from-ink/55 to-ink/75" />
       <TopoMotif />
 
       <div className={`${container} relative z-2`}>
@@ -36,13 +36,10 @@ export default function CityOran() {
           className="mt-8 grid grid-cols-2 gap-x-4 gap-y-6 sm:mt-12 sm:grid-cols-3 sm:gap-6 tablet:grid-cols-6"
           delay={0.1}
         >
-          {CATEGORIES.map((cat) => (
-            <div className="flex flex-col items-center gap-2 text-center" key={cat.key}>
-              <Icon
-                name={cat.icon}
-                className="h-6 w-6 shrink-0 stroke-white/85 fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]"
-              />
-              <span className="text-[clamp(13px,1.4vw,14px)] font-medium text-white/85">{t(cat.key)}</span>
+          {CATEGORIES.map(({ Icon, key }) => (
+            <div className="flex flex-col items-center gap-2 text-center" key={key}>
+              <Icon className="h-6 w-6 shrink-0 text-white/85" strokeWidth={1.6} aria-hidden="true" />
+              <span className="text-[clamp(13px,1.4vw,14px)] font-medium text-white/85">{t(key)}</span>
             </div>
           ))}
         </Reveal>
