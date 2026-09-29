@@ -3,7 +3,7 @@
 on:
   push:
     branches:
-      - main # Change this to 'master' if your default branch uses that name
+      - main
 
 jobs:
   build-and-deploy:
@@ -25,11 +25,11 @@ jobs:
       run: npm run build
 
     - name: Synchronize Files via SFTP
-      uses: nwtgck/actions-sftp-deploy@v1.2.2
+      uses: pressdown/sftp-upload-action@v2
       with:
-        username: 'gmzrkfea'                    # Your cPanel account username
-        host: '://bennadda-dreamcar.com'     # Your domain
-        password: ${{ secrets.SFTP_PASSWORD }}  # Your cPanel account password
-        port: 22                                 # Secure SFTP port
-        local_path: './'                         # Upload everything from the runner environment
-        remote_path: '/home/gmzrkfea/repositories/vtc-benaddadreamcar' # App root path
+        host: ${{ secrets.SFTP_HOST }}
+        username: 'gmzrkfea'
+        password: ${{ secrets.SFTP_PASSWORD }}
+        port: 22
+        local_path: './'
+        remote_path: '/home/gmzrkfea/repositories/vtc-benaddadreamcar'
