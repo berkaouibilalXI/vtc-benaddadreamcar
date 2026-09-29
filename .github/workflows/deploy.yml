@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -33,4 +35,4 @@ jobs:
           remote-password: ${{ secrets.SFTP_PASSWORD }}
           local-path: './dist'
           remote-path: '/home/gmzrkfea/public_html/vtc-oran'
-          sync: delta
+          sync: full
