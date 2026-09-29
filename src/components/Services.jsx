@@ -59,16 +59,16 @@ export default function Services() {
           <p className={sectionSub}>{t('services.sub')}</p>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-4 tablet:grid-cols-2 desktop:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 sm:gap-4 tablet:grid-cols-2 desktop:grid-cols-3">
           {SERVICES.map((service, i) => (
             <Reveal
               as="article"
-              className="flex items-center gap-6 rounded-card border border-line bg-white p-4 shadow-card transition-[box-shadow,border-color,transform] duration-200 ease-out hover:-translate-y-0.5 hover:border-transparent hover:shadow-card-hover"
+              className="flex items-center gap-4 rounded-card border border-line bg-white p-3 shadow-card transition-[box-shadow,border-color,transform] duration-200 ease-out hover:-translate-y-0.5 hover:border-transparent hover:shadow-card-hover sm:gap-6 sm:p-4"
               key={service.id}
               delay={Math.min(i * 0.05, 0.2)}
             >
-              <MediaSlot className="h-19 w-19 shrink-0 rounded-xl" src={service.img} alt={t(service.titleKey)} />
-              <div>
+              <MediaSlot className="h-14 w-14 shrink-0 rounded-xl sm:h-19 sm:w-19" src={service.img} alt={t(service.titleKey)} />
+              <div className="min-w-0">
                 <h3 className="text-[clamp(18px,3vw,20px)] font-display font-bold">{t(service.titleKey)}</h3>
                 {service.subKey && <p className="mt-1 text-[clamp(13px,1.4vw,14px)]">{t(service.subKey)}</p>}
                 <p className="mt-1 text-[clamp(13px,1.4vw,14px)]">{t(service.descKey)}</p>

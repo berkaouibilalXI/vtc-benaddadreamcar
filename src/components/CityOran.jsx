@@ -33,7 +33,7 @@ export default function CityOran() {
         </Reveal>
 
         <Reveal
-          className="mt-12 grid grid-cols-3 gap-6 tablet:grid-cols-6"
+          className="mt-8 grid grid-cols-2 gap-x-4 gap-y-6 sm:mt-12 sm:grid-cols-3 sm:gap-6 tablet:grid-cols-6"
           delay={0.1}
         >
           {CATEGORIES.map((cat) => (

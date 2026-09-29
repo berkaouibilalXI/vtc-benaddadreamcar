@@ -1,4 +1,4 @@
-import { Icon } from './IconSprite';
+import { Menu } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { container, btnPrimary, btnSm, btnIcon } from '../styles/ui';
 
@@ -15,7 +15,7 @@ export default function Navbar({ onOpenMenu }) {
 
   return (
     <nav className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur-md">
-      <div className={`${container} flex h-16 items-center justify-start gap-6`}>
+      <div className={`${container} flex h-16 items-center justify-start gap-3 sm:gap-6`}>
         <a href="#hero" className="font-display text-[1.05rem] font-extrabold leading-none tracking-[0.02em]">
           <img src="/logo-black.png" alt="LOGO" width={75}/>
         </a>
@@ -32,7 +32,7 @@ export default function Navbar({ onOpenMenu }) {
           ))}
         </div>
 
-        <div className="ml-auto flex items-center gap-4">
+        <div className="ml-auto flex items-center gap-2 sm:gap-4">
           <div
             className="flex items-center overflow-hidden rounded-full border border-line font-display text-[0.8rem] font-bold"
             role="group"
@@ -58,7 +58,7 @@ export default function Navbar({ onOpenMenu }) {
             href={contacts.waLink}
             target="_blank"
             rel="noopener"
-            className={`hidden desktop:inline-flex ${btnPrimary} ${btnSm}`}
+            className={`${btnPrimary} ${btnSm} !hidden desktop:!inline-flex`}
           >
             <span>{t('cta.whatsapp')}</span>
           </a>
@@ -70,7 +70,7 @@ export default function Navbar({ onOpenMenu }) {
             aria-expanded="false"
             onClick={onOpenMenu}
           >
-            <Icon name="menu" className={`${btnIcon} !h-[26px] !w-[26px]`} />
+            <Menu name="menu" className={`${btnIcon} h-6.5! w-6.5!`} />
           </button>
         </div>
       </div>

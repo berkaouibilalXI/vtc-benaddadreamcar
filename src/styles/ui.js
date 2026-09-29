@@ -1,13 +1,14 @@
-export const container = 'mx-auto max-w-[1160px] px-6';
-export const section = 'py-16';
-export const sectionHead = 'mb-8 max-w-[46ch]';
+export const container = 'mx-auto w-full max-w-[1160px] px-4 sm:px-6 desktop:px-8';
+export const section = 'py-12 sm:py-16 desktop:py-20';
+export const sectionHead = 'mb-6 max-w-[46ch] sm:mb-8';
 export const eyebrowRule = 'my-4 h-[3px] w-10 rounded bg-red';
 export const sectionTitle = 'text-[clamp(24px,4.5vw,34px)] font-display font-extrabold leading-[1.15] tracking-[-0.01em]';
 export const sectionSub = 'mt-4 max-w-[32ch] text-[clamp(14px,1.6vw,16px)] text-grey-text';
 
 const btnBase =
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-transparent ' +
-  'px-7 py-[15px] font-display text-[0.95rem] font-bold transition-[transform,background-color,color,border-color] ' +
+  'max-w-full px-5 py-3 text-center font-display text-[0.9rem] font-bold transition-[transform,background-color,color,border-color] ' +
+  'sm:px-7 sm:py-[15px] sm:text-[0.95rem] ' +
   'duration-150 ease-out active:scale-[0.97]';
 
 export const btnPrimary = `${btnBase} bg-red text-white hover:bg-red-dark`;

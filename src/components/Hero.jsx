@@ -9,9 +9,9 @@ export default function Hero() {
   const { t, contacts } = useLanguage();
 
   return (
-    <section className="pt-12" id="hero">
-      <div className={`${container} tablet:grid tablet:grid-cols-[1.1fr_0.9fr] tablet:items-center tablet:gap-16`}>
-        <Reveal className="pb-8">
+    <section className="pt-8 sm:pt-12" id="hero">
+      <div className={`${container} tablet:grid tablet:grid-cols-[1.1fr_0.9fr] tablet:items-center tablet:gap-8 desktop:gap-16`}>
+        <Reveal className="pb-6 tablet:pb-8">
           <h1 className="text-[clamp(32px,7vw,48px)] font-display font-extrabold leading-[1.15] tracking-[-0.01em]">
             {t('hero.title')}
           </h1>
@@ -52,7 +52,7 @@ export default function Hero() {
 
         <Reveal delay={0.1}>
           <MediaSlot
-            className="relative mt-12 aspect-4/5 rounded-card border border-line tablet:mt-0 tablet:aspect-auto tablet:h-130"
+            className="relative mt-8 aspect-4/5 rounded-card border border-line tablet:mt-0 tablet:aspect-auto tablet:h-110 desktop:h-130"
             src="/assets/hero.png"
             alt={t('hero.imgAlt')}
             loading="eager"
