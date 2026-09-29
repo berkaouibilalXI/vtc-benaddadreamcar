@@ -18,7 +18,7 @@ export default function MobileMenu({ open, onClose }) {
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[60] flex flex-col bg-white p-6 desktop:hidden"
+          className="fixed inset-0 z-60 flex flex-col bg-white p-6 desktop:hidden"
           initial={{ x: '100%' }}
           animate={{ x: 0 }}
           exit={{ x: '100%' }}
@@ -45,7 +45,7 @@ export default function MobileMenu({ open, onClose }) {
             <a href={contacts.waLink} target="_blank" rel="noopener" className={`${btnPrimary} ${btnBlock}`}>
               <Icon
                 name="whatsapp"
-                className="h-[18px] w-[18px] shrink-0"
+                className="h-4.5 w-4.5 shrink-0"
                 style={{ stroke: 'none', fill: 'currentColor' }}
               />
               <span>{t('cta.whatsapp')}</span>
