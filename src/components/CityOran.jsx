@@ -1,4 +1,4 @@
-import { Plane, Building, Pin, History, Briefcase, Route } from 'lucide-react';
+import { Plane, Building, MapPin, History, Briefcase, Route } from 'lucide-react';
 import MediaSlot from './MediaSlot';
 import TopoMotif from './TopoMotif';
 import Reveal from './Reveal';
@@ -8,7 +8,7 @@ import { container, section, eyebrowRule, btnPrimary } from '../styles/ui';
 const CATEGORIES = [
   { Icon: Plane, key: 'city.cat.airport' },
   { Icon: Building, key: 'city.cat.hotels' },
-  { Icon: Pin, key: 'city.cat.downtown' },
+  { Icon: MapPin, key: 'city.cat.downtown' },
   { Icon: History, key: 'city.cat.events' },
   { Icon: Briefcase, key: 'city.cat.business' },
   { Icon: Route, key: 'city.cat.tourism' },
