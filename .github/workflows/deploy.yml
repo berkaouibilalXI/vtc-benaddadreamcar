@@ -1,38 +1,31 @@
-﻿name: Node & Vite App CI/CD Pipeline (SFTP)
+﻿name: Build and Deploy (SFTP)
 
 on:
   push:
-    branches:
-      - main # Change this to 'master' if your default branch uses that name
+    branches: [main]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0  # Add this line to fetch all commit history
+      - uses: actions/checkout@v4
 
-    - name: Setup Node.js Environment
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
-    - name: Install Project Dependencies
-      run: npm install
+      - run: npm ci
+      - run: npm run build
 
-    - name: Build Vite Frontend Assets
-      run: npm run build
-
-    - name: Synchronize Files via SFTP
-      uses: milanmk/actions-file-deployer@master
-      with:
-        remote-protocol: sftp                   # Forces secure SFTP file delivery
-        remote-host: '://bennadda-dreamcar.com' # Your cPanel host destination domain
-        remote-port: 22                         # Standard secure SSH port
-        remote-user: 'gmzrkfea'                 # Your verified cPanel username
-        remote-password: ${{ secrets.SFTP_PASSWORD }} # Your cPanel account password
-        remote-path: '/home/gmzrkfea/repositories/vtc-benaddadreamcar' # Document root folder path
-        sync: delta                             # Syncs only modified files to optimize upload speed
+      - name: Deploy via SFTP
+        uses: milanmk/actions-file-deployer@<PINNED_SHA_OR_TAG>
+        with:
+          remote-protocol: sftp
+          remote-host: 'bennadda-dreamcar.com'
+          remote-port: 22
+          remote-user: 'gmzrkfea'
+          remote-password: ${{ secrets.SFTP_PASSWORD }}
+          local-path: './dist'
+          remote-path: '/home/gmzrkfea/public_html/vtc-oran'
+          sync: delta
