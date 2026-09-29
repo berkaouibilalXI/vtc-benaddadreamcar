@@ -1,4 +1,4 @@
-﻿name: Build and Deploy (SFTP)
+﻿name: Build and Deploy (FTP)
 
 on:
   push:
@@ -25,12 +25,12 @@ jobs:
       - name: Build Vite app
         run: npm run build
 
-      - name: Deploy via SFTP
+      - name: Deploy via FTP
         uses: milanmk/actions-file-deployer@master
         with:
-          remote-protocol: sftp
+          remote-protocol: ftp
           remote-host: 'bennadda-dreamcar.com'
-          remote-port: 22
+          remote-port: 21
           remote-user: 'gmzrkfea'
           remote-password: ${{ secrets.SFTP_PASSWORD }}
           local-path: './dist'
