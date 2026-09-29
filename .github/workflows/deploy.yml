@@ -31,8 +31,8 @@ jobs:
           remote-protocol: ftp
           remote-host: 'bennadda-dreamcar.com'
           remote-port: 21
-          remote-user: 'gmzrkfea'
+          remote-user: 'YOUR_FTP_USERNAME'
           remote-password: ${{ secrets.SFTP_PASSWORD }}
           local-path: './dist'
-          remote-path: '/home/gmzrkfea/public_html/vtc-oran'
+          remote-path: '/'
           sync: full
