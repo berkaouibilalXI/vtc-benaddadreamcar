@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -25,14 +23,27 @@ jobs:
       - name: Build Vite app
         run: npm run build
 
+      - name: Show build output
+        run: ls -la dist
+
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
       - name: Deploy via FTP
-        uses: milanmk/actions-file-deployer@master
-        with:
-          remote-protocol: ftp
-          remote-host: 'bennadda-dreamcar.com'
-          remote-port: 21
-          remote-user: ${{ secrets.FTP_USERNAME }}
-          remote-password: ${{ secrets.SFTP_PASSWORD }}
-          local-path: './dist'
-          remote-path: '/'
-          sync: full
+        env:
+          FTP_USER: 'deployment@benadda-dreamcar.com'
+          FTP_PASS: ${{ secrets.SFTP_PASSWORD }}
+        run: |
+          lftp -u "$FTP_USER","$FTP_PASS" 54.36.246.134 -p 21 <<'EOF'
+          set cmd:fail-exit yes
+          set ftp:ssl-allow yes
+          set ftp:ssl-force yes
+          set ftp:ssl-protect-data yes
+          set ssl:verify-certificate no
+          set net:max-retries 2
+          set net:timeout 20
+          mirror --reverse --verbose --parallel=3 dist/ /
+          echo "---- Remote listing ----"
+          cls -l
+          bye
+          EOF
