@@ -1,4 +1,4 @@
-﻿name: Node & Vite App CI/CD Pipeline
+﻿name: Node & Vite App CI/CD Pipeline (SFTP)
 
 on:
   push:
@@ -24,31 +24,12 @@ jobs:
     - name: Build Vite Frontend Assets
       run: npm run build
 
-    - name: Synchronize Files via FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+    - name: Synchronize Files via SFTP
+      uses: nwtgck/actions-sftp-deploy@v1.2.2
       with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./ 
-        server-dir: ./
-        protocol: ftps
-        security: loose
-        timeout: 90000
-        exclude: |
-          **/.git*
-          **/.git*/**
-          **/node_modules/**
-          .github/**
-
-    - name: Trigger Node.js App Restart
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        protocol: ftps
-        security: loose
-        timeout: 90000
-        local-dir: ./tmp/
-        server-dir: ./tmp/
+        username: 'gmzrkfea'                    # Your cPanel account username
+        host: '://bennadda-dreamcar.com'     # Your domain
+        password: ${{ secrets.SFTP_PASSWORD }}  # Your cPanel account password
+        port: 22                                 # Secure SFTP port
+        local_path: './'                         # Upload everything from the runner environment
+        remote_path: '/home/gmzrkfea/repositories/vtc-benaddadreamcar' # App root path
