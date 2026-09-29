@@ -58,7 +58,7 @@ export default function Navbar({ onOpenMenu }) {
             href={contacts.waLink}
             target="_blank"
             rel="noopener"
-            className={`${btnPrimary} ${btnSm} !hidden desktop:!inline-flex`}
+            className={`${btnPrimary} ${btnSm} hidden! desktop:inline-flex!`}
           >
             <span>{t('cta.whatsapp')}</span>
           </a>

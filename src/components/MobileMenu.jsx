@@ -26,12 +26,10 @@ export default function MobileMenu({ open, onClose }) {
         >
           <div className="flex h-14 items-center justify-between">
             <div className="font-display text-[1.05rem] font-extrabold leading-none tracking-[0.02em]">
-              BENADDA
-              <br />
-              <span className="mt-0.5 block text-[0.6rem] font-bold tracking-[0.25em] text-red">DREAMCAR</span>
+              <img src="/logo-black.png" alt="LOGO" width={75}/>
             </div>
             <button type="button" className="p-1.5" aria-label="Fermer le menu" onClick={onClose}>
-              <Icon name="close" className="h-[26px] w-[26px] shrink-0 stroke-current fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]" />
+              <Icon name="close" className="h-6.5 w-6.5 shrink-0 stroke-current fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]" />
             </button>
           </div>
 
