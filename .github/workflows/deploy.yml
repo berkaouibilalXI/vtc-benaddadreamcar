@@ -38,7 +38,8 @@ jobs:
           set ssl:verify-certificate no
           set net:max-retries 2
           set net:timeout 20
-          mirror --reverse --verbose --parallel=3 dist/ /
+          mirror --reverse --verbose --parallel=3 --exclude-glob index.html dist/ /
+          put -O / dist/index.html
           echo "---- Remote listing ----"
           cls -l
           bye
