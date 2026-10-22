@@ -3,6 +3,15 @@
    ============================================================ */
 export const CONTENT = {
   fr: {
+    'seo.title': 'Chauffeur privé à Oran – Transfert aéroport | Benadda DreamCar',
+    'seo.description':
+      "Chauffeur privé à Oran : transfert aéroport avec suivi de vol, hôtels, déplacements professionnels et mise à disposition. Disponible 24h/24, réservation sur WhatsApp.",
+    'seo.ogLocale': 'fr_FR',
+    'seo.ogImageAlt': 'Benadda DreamCar — chauffeur privé à Oran',
+    'nav.openMenu': 'Ouvrir le menu',
+    'nav.closeMenu': 'Fermer le menu',
+    'nav.logoAlt': 'Benadda DreamCar — chauffeur privé à Oran',
+
     'nav.home': 'Accueil',
     'nav.services': 'Services',
     'nav.fleet': 'Notre flotte',
@@ -113,6 +122,15 @@ export const CONTENT = {
     waMessage: 'Bonjour, je souhaite réserver un chauffeur privé à Oran.',
   },
   en: {
+    'seo.title': 'Private Chauffeur in Oran – Airport Transfers | Benadda DreamCar',
+    'seo.description':
+      'Private chauffeur in Oran, Algeria: airport transfers with flight tracking, hotel and business travel, chauffeur at disposal. Available 24/7. Book on WhatsApp.',
+    'seo.ogLocale': 'en_US',
+    'seo.ogImageAlt': 'Benadda DreamCar — private chauffeur in Oran',
+    'nav.openMenu': 'Open menu',
+    'nav.closeMenu': 'Close menu',
+    'nav.logoAlt': 'Benadda DreamCar — private chauffeur in Oran',
+
     'nav.home': 'Home',
     'nav.services': 'Services',
     'nav.fleet': 'Our fleet',

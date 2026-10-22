@@ -1,5 +1,7 @@
 import { Menu } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { LANG_PATHS } from '../data/config';
 import { container, btnPrimary, btnSm, btnIcon } from '../styles/ui';
 
 const NAV_LINKS = [
@@ -11,13 +13,13 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar({ onOpenMenu }) {
-  const { t, lang, setLang, contacts } = useLanguage();
+  const { t, lang, contacts } = useLanguage();
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur-md">
+    <nav aria-label="Navigation principale / Main navigation" className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur-md">
       <div className={`${container} flex h-16 items-center justify-start gap-3 sm:gap-6`}>
         <a href="#hero" className="font-display text-[1.05rem] font-extrabold leading-none tracking-[0.02em]">
-          <img src="/logo-black.png" alt="LOGO" width={75}/>
+          <img src="/logo-black.webp" alt={t('nav.logoAlt')} width={75} height={52} />
         </a>
 
         <div className="hidden flex-1 items-center gap-8 text-[0.9rem] font-semibold desktop:flex">
@@ -38,20 +40,18 @@ export default function Navbar({ onOpenMenu }) {
             role="group"
             aria-label="Langue / Language"
           >
-            <button
-              type="button"
-              className={`px-3 py-[7px] ${lang === 'fr' ? 'bg-ink text-white' : 'text-grey-text'}`}
-              onClick={() => setLang('fr')}
-            >
-              FR
-            </button>
-            <button
-              type="button"
-              className={`px-3 py-[7px] ${lang === 'en' ? 'bg-ink text-white' : 'text-grey-text'}`}
-              onClick={() => setLang('en')}
-            >
-              EN
-            </button>
+            {['fr', 'en'].map((code) => (
+              <Link
+                key={code}
+                to={LANG_PATHS[code]}
+                hrefLang={code}
+                lang={code}
+                aria-current={lang === code ? 'true' : undefined}
+                className={`px-3 py-[7px] ${lang === code ? 'bg-ink text-white' : 'text-grey-text'}`}
+              >
+                {code.toUpperCase()}
+              </Link>
+            ))}
           </div>
 
           <a
@@ -66,7 +66,7 @@ export default function Navbar({ onOpenMenu }) {
           <button
             type="button"
             className="flex p-1.5 desktop:hidden"
-            aria-label="Ouvrir le menu"
+            aria-label={t('nav.openMenu')}
             aria-expanded="false"
             onClick={onOpenMenu}
           >

@@ -1,10 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
+import { ViteReactSSG } from 'vite-react-ssg';
+import { routes } from './routes.jsx';
 import './index.css';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// Rendu côté client (dev) + pré-rendu statique au build + hydratation en production.
+export const createRoot = ViteReactSSG({ routes });

@@ -1,11 +1,23 @@
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CONTENT } from '../data/content';
-import { SITE_CONFIG } from '../data/config';
+import { SITE_CONFIG, LANG_PATHS } from '../data/config';
 
 const LanguageContext = createContext(null);
 
-export function LanguageProvider({ children }) {
-  const [lang, setLang] = useState(SITE_CONFIG.DEFAULT_LANG);
+/**
+ * La langue vient désormais de l'URL (/ = FR, /en = EN) afin que chaque langue
+ * ait sa propre page indexable. `setLang` navigue vers la page de l'autre langue.
+ */
+export function LanguageProvider({ lang = SITE_CONFIG.DEFAULT_LANG, children }) {
+  const navigate = useNavigate();
+
+  const setLang = useCallback(
+    (next) => {
+      if (next !== lang && LANG_PATHS[next]) navigate(LANG_PATHS[next]);
+    },
+    [lang, navigate],
+  );
 
   const value = useMemo(() => {
     const dict = CONTENT[lang] || CONTENT.fr;
@@ -24,7 +36,7 @@ export function LanguageProvider({ children }) {
       config: SITE_CONFIG,
       contacts: { waLink, telLink, mailLink, igLink },
     };
-  }, [lang]);
+  }, [lang, setLang]);
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }

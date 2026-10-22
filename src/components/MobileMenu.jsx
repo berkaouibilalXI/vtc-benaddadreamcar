@@ -26,9 +26,9 @@ export default function MobileMenu({ open, onClose }) {
         >
           <div className="flex h-14 items-center justify-between">
             <div className="font-display text-[1.05rem] font-extrabold leading-none tracking-[0.02em]">
-              <img src="/logo-black.png" alt="LOGO" width={75}/>
+              <img src="/logo-black.webp" alt={t('nav.logoAlt')} width={75} height={52} />
             </div>
-            <button type="button" className="p-1.5" aria-label="Fermer le menu" onClick={onClose}>
+            <button type="button" className="p-1.5" aria-label={t('nav.closeMenu')} onClick={onClose}>
               <Icon name="close" className="h-6.5 w-6.5 shrink-0 stroke-current fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]" />
             </button>
           </div>

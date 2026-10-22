@@ -11,7 +11,7 @@ export default function Hero() {
   return (
     <section className="pt-8 sm:pt-12" id="hero">
       <div className={`${container} tablet:grid tablet:grid-cols-[1.1fr_0.9fr] tablet:items-center tablet:gap-8 desktop:gap-16`}>
-        <Reveal className="pb-6 tablet:pb-8">
+        <Reveal eager className="pb-6 tablet:pb-8">
           <h1 className="text-[clamp(32px,7vw,48px)] font-display font-extrabold leading-[1.15] tracking-[-0.01em]">
             {t('hero.title')}
           </h1>
@@ -50,12 +50,14 @@ export default function Hero() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1}>
+        <Reveal eager delay={0.1}>
           <MediaSlot
             className="relative mt-8 aspect-4/5 rounded-card border border-line tablet:mt-0 tablet:aspect-auto tablet:h-110 desktop:h-130"
-            src="/assets/hero.png"
+            src="/assets/hero.webp"
             alt={t('hero.imgAlt')}
-            loading="eager"
+            width={1080}
+            height={1109}
+            priority
           />
         </Reveal>
       </div>

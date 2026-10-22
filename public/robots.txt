@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /.vite/
+
+Sitemap: https://vtc-oran.benadda-dreamcar.com/sitemap.xml

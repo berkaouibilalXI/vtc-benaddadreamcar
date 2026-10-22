@@ -7,7 +7,7 @@ import { container, section, sectionHead, eyebrowRule, sectionTitle, sectionSub,
 const SERVICES = [
   {
     id: 'airport',
-    img: '/assets/service-airport.png',
+    img: '/assets/service-airport.webp',
     titleKey: 'services.airport.title',
     subKey: 'services.airport.sub',
     descKey: 'services.airport.desc',
@@ -15,7 +15,7 @@ const SERVICES = [
   },
   {
     id: 'hotel',
-    img: '/assets/service-hotel.png',
+    img: '/assets/service-hotel.webp',
     titleKey: 'services.hotel.title',
     subKey: 'services.hotel.sub',
     descKey: 'services.hotel.desc',
@@ -23,7 +23,7 @@ const SERVICES = [
   },
   {
     id: 'business',
-    img: '/assets/service-business.png',
+    img: '/assets/service-business.webp',
     titleKey: 'services.business.title',
     subKey: 'services.business.sub',
     descKey: 'services.business.desc',
@@ -31,7 +31,7 @@ const SERVICES = [
   },
   {
     id: 'disposal',
-    img: '/assets/service-chauffeur.png',
+    img: '/assets/service-chauffeur.webp',
     titleKey: 'services.disposal.title',
     subKey: 'services.disposal.sub',
     descKey: 'services.disposal.desc',
@@ -39,7 +39,7 @@ const SERVICES = [
   },
   {
     id: 'outoftown',
-    img: '/assets/service-outside.png',
+    img: '/assets/service-outside.webp',
     titleKey: 'services.outoftown.title',
     subKey: null,
     descKey: 'services.outoftown.desc2',
@@ -67,7 +67,7 @@ export default function Services() {
               key={service.id}
               delay={Math.min(i * 0.05, 0.2)}
             >
-              <MediaSlot className="h-14 w-14 shrink-0 rounded-xl sm:h-19 sm:w-19" src={service.img} alt={t(service.titleKey)} />
+              <MediaSlot className="h-14 w-14 shrink-0 rounded-xl sm:h-19 sm:w-19" src={service.img} alt={t(service.titleKey)} width={192} height={192} />
               <div className="min-w-0">
                 <h3 className="text-[clamp(18px,3vw,20px)] font-display font-bold">{t(service.titleKey)}</h3>
                 {service.subKey && <p className="mt-1 text-[clamp(13px,1.4vw,14px)]">{t(service.subKey)}</p>}

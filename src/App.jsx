@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { LanguageProvider } from './context/LanguageContext';
+import Seo from './seo/Seo';
 import IconSprite from './components/IconSprite';
 import Navbar from './components/Navbar';
 import MobileMenu from './components/MobileMenu';
@@ -14,11 +15,12 @@ import CtaFinal from './components/CtaFinal';
 import Footer from './components/Footer';
 import WhatsappBar from './components/WhatsappBar';
 
-export default function App() {
+export default function App({ lang }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <LanguageProvider>
+    <LanguageProvider lang={lang}>
+      <Seo />
       <IconSprite />
 
       <Navbar onOpenMenu={() => setMenuOpen(true)} />

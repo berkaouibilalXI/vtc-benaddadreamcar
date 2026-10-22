@@ -4,8 +4,20 @@ import { useState } from 'react';
  * Wraps an <img> so that if it 404s, we fall back to a soft gradient
  * placeholder instead of a broken-image icon (mirrors the original
  * `[data-media] img` onerror handling).
+ *
+ * `width` / `height` (dimensions intrinsèques) évitent les décalages de mise en
+ * page (CLS) ; `priority` marque l'image LCP (chargement immédiat, haute priorité).
  */
-export default function MediaSlot({ src, alt, className = '', optional = false, loading = 'lazy' }) {
+export default function MediaSlot({
+  src,
+  alt,
+  className = '',
+  optional = false,
+  loading = 'lazy',
+  width,
+  height,
+  priority = false,
+}) {
   const [broken, setBroken] = useState(false);
 
   if (optional && broken) return null;
@@ -18,7 +30,11 @@ export default function MediaSlot({ src, alt, className = '', optional = false, 
       <img
         src={src}
         alt={alt}
-        loading={loading}
+        width={width}
+        height={height}
+        loading={priority ? 'eager' : loading}
+        fetchPriority={priority ? 'high' : undefined}
+        decoding="async"
         onError={() => setBroken(true)}
         className={`h-full w-full object-cover ${broken ? 'hidden' : 'block'}`}
       />

@@ -23,7 +23,7 @@ export default function Fleet() {
           delay={0.05}
         >
           <div>
-            <MediaSlot className="relative aspect-16/10" src="/assets/pass-at-pro.png" alt={t('fleet.imgAlt')} />
+            <MediaSlot className="relative aspect-16/10" src="/assets/pass-at-pro.webp" alt={t('fleet.imgAlt')} width={1043} height={701} />
           </div>
           <div className="p-6">
             <h3 className="text-[clamp(24px,4.5vw,34px)] font-display font-extrabold">PASSAT PRO</h3>
