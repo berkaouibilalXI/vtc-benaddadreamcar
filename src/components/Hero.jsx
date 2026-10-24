@@ -30,7 +30,7 @@ export default function Hero() {
               className={btnPrimary}
               whileTap={{ scale: 0.97 }}
             >
-              <Send size={18} className={btnIcon} />
+              <Send size={18} className={`${btnIcon} rtl:-scale-x-100`} />
               <span>{t('cta.whatsapp')}</span>
             </motion.a>
             {contacts.telLink && (
@@ -45,7 +45,7 @@ export default function Hero() {
           </div>
 
           <div className="mt-6 flex items-center gap-2 text-[clamp(13px,1.4vw,14px)] text-grey-text">
-            <Send size={16} className="text-red" />
+            <Send size={16} className="text-red rtl:-scale-x-100" />
             <span>{t('hero.info')}</span>
           </div>
         </Reveal>

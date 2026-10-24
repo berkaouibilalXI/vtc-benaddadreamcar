@@ -30,7 +30,21 @@ jobs:
           FTP_USER: 'deployment@benadda-dreamcar.com'
           FTP_PASS: ${{ secrets.SFTP_PASSWORD }}
         run: |
-          lftp -u "$FTP_USER","$FTP_PASS" 54.36.246.134 -p 21 <<'EOF'
+          # Chaque page pré-rendue est un index.html (/, /en/, /ar/, /transfert-aeroport-oran/, …).
+          # Ils sont envoyés en dernier, après les assets, pour ne jamais pointer vers un fichier absent.
+          PUTS=$(cd dist && find . -name index.html | sed 's|^\./||' | sort | while read -r f; do
+            d=$(dirname "$f")
+            if [ "$d" = "." ]; then
+              echo "put -O / dist/$f"
+            else
+              echo "set cmd:fail-exit no"
+              echo "mkdir -f -p /$d"
+              echo "set cmd:fail-exit yes"
+              echo "put -O /$d dist/$f"
+            fi
+          done)
+
+          lftp -u "$FTP_USER","$FTP_PASS" 54.36.246.134 -p 21 <<EOF
           set cmd:fail-exit yes
           set ftp:ssl-allow yes
           set ftp:ssl-force yes
@@ -39,9 +53,7 @@ jobs:
           set net:max-retries 2
           set net:timeout 20
           mirror --reverse --verbose --parallel=3 --exclude-glob index.html dist/ /
-          mkdir -p /en
-          put -O / dist/index.html
-          put -O /en dist/en/index.html
+          $PUTS
           echo "---- Remote listing ----"
           cls -l
           bye

@@ -26,7 +26,7 @@ export default function HowItWorks() {
                 {step.num}
               </div>
               {i < STEPS.length - 1 && (
-                <div className="step-connector absolute bottom-0 left-[19px] top-10 w-px" />
+                <div className="step-connector absolute bottom-0 start-[19px] top-10 w-px" />
               )}
               <div>
                 <h3 className="text-[clamp(18px,3vw,20px)] font-display font-bold">{t(step.titleKey)}</h3>

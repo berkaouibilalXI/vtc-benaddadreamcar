@@ -1,27 +1,29 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { Icon } from './IconSprite';
+import { Icon } from './Icon';
 import { useLanguage } from '../context/LanguageContext';
 import { btnPrimary, btnBlock } from '../styles/ui';
 
 const NAV_LINKS = [
-  { href: '#hero', key: 'nav.home' },
-  { href: '#services', key: 'nav.services' },
-  { href: '#fleet', key: 'nav.fleet' },
-  { href: '#partners', key: 'nav.partners' },
-  { href: '#contact', key: 'nav.contact' },
+  { hash: '#hero', key: 'nav.home' },
+  { hash: '#services', key: 'nav.services' },
+  { hash: '#fleet', key: 'nav.fleet' },
+  { hash: '#partners', key: 'nav.partners' },
+  { hash: '#contact', key: 'nav.contact' },
 ];
 
 export default function MobileMenu({ open, onClose }) {
-  const { t, contacts } = useLanguage();
+  const { t, dir, homeHref, contacts } = useLanguage();
+  // Le panneau glisse depuis le bord de fin : droite en LTR, gauche en RTL (arabe)
+  const offscreen = dir === 'rtl' ? '-100%' : '100%';
 
   return (
     <AnimatePresence>
       {open && (
         <motion.div
           className="fixed inset-0 z-60 flex flex-col bg-white p-6 desktop:hidden"
-          initial={{ x: '100%' }}
+          initial={{ x: offscreen }}
           animate={{ x: 0 }}
-          exit={{ x: '100%' }}
+          exit={{ x: offscreen }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
           <div className="flex h-14 items-center justify-between">
@@ -29,13 +31,13 @@ export default function MobileMenu({ open, onClose }) {
               <img src="/logo-black.webp" alt={t('nav.logoAlt')} width={75} height={52} />
             </div>
             <button type="button" className="p-1.5" aria-label={t('nav.closeMenu')} onClick={onClose}>
-              <Icon name="close" className="h-6.5 w-6.5 shrink-0 stroke-current fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]" />
+              <Icon name="close" className="h-6.5 w-6.5 shrink-0" />
             </button>
           </div>
 
           <div className="mt-12 flex flex-col gap-8">
             {NAV_LINKS.map((link) => (
-              <a key={link.key} href={link.href} onClick={onClose} className="font-display text-2xl font-bold">
+              <a key={link.key} href={homeHref(link.hash)} onClick={onClose} className="font-display text-2xl font-bold">
                 {t(link.key)}
               </a>
             ))}
@@ -43,11 +45,7 @@ export default function MobileMenu({ open, onClose }) {
 
           <div className="mt-auto flex flex-col gap-4">
             <a href={contacts.waLink} target="_blank" rel="noopener" className={`${btnPrimary} ${btnBlock}`}>
-              <Icon
-                name="whatsapp"
-                className="h-4.5 w-4.5 shrink-0"
-                style={{ stroke: 'none', fill: 'currentColor' }}
-              />
+              <Icon name="whatsapp" className="h-4.5 w-4.5 shrink-0" />
               <span>{t('cta.whatsapp')}</span>
             </a>
           </div>

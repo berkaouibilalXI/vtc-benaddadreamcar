@@ -1,7 +1,9 @@
-import { Icon } from './IconSprite';
+import { Link } from 'react-router-dom';
+import { Icon } from './Icon';
 import MediaSlot from './MediaSlot';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
+import { SERVICE_PATHS } from '../data/pages';
 import { container, section, sectionHead, eyebrowRule, sectionTitle, sectionSub, linkCta, linkCtaIcon } from '../styles/ui';
 
 const SERVICES = [
@@ -48,7 +50,7 @@ const SERVICES = [
 ];
 
 export default function Services() {
-  const { t, contacts } = useLanguage();
+  const { t, lang, contacts } = useLanguage();
 
   return (
     <section className={section} id="services">
@@ -69,13 +71,26 @@ export default function Services() {
             >
               <MediaSlot className="h-14 w-14 shrink-0 rounded-xl sm:h-19 sm:w-19" src={service.img} alt={t(service.titleKey)} width={192} height={192} />
               <div className="min-w-0">
-                <h3 className="text-[clamp(18px,3vw,20px)] font-display font-bold">{t(service.titleKey)}</h3>
+                <h3 className="text-[clamp(18px,3vw,20px)] font-display font-bold">
+                  <Link to={SERVICE_PATHS[service.id][lang]} hrefLang={lang} className="hover:text-red">
+                    {t(service.titleKey)}
+                  </Link>
+                </h3>
                 {service.subKey && <p className="mt-1 text-[clamp(13px,1.4vw,14px)]">{t(service.subKey)}</p>}
                 <p className="mt-1 text-[clamp(13px,1.4vw,14px)]">{t(service.descKey)}</p>
-                <a href={contacts.waLink} target="_blank" rel="noopener" className={`mt-2 ${linkCta}`}>
-                  <span>{t(service.ctaKey)}</span>
-                  <Icon name="chevron" className={linkCtaIcon} />
-                </a>
+                <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1">
+                  <a href={contacts.waLink} target="_blank" rel="noopener" className={linkCta}>
+                    <span>{t(service.ctaKey)}</span>
+                    <Icon name="chevron" className={linkCtaIcon} />
+                  </a>
+                  <Link
+                    to={SERVICE_PATHS[service.id][lang]}
+                    hrefLang={lang}
+                    className="text-[0.85rem] font-semibold text-grey-text underline-offset-4 hover:text-red hover:underline"
+                  >
+                    {t('svc.more')}
+                  </Link>
+                </div>
               </div>
             </Reveal>
           ))}

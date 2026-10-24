@@ -1,4 +1,4 @@
-import { Icon } from './IconSprite';
+import { Icon } from './Icon';
 import TopoMotif from './TopoMotif';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
@@ -28,7 +28,7 @@ export default function CtaFinal() {
             <span key={tag.key} className="flex items-center gap-2 text-[clamp(13px,1.4vw,14px)] text-white/85">
               <Icon
                 name={tag.icon}
-                className="h-[18px] w-[18px] shrink-0 stroke-white/55 fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]"
+                className="h-[18px] w-[18px] shrink-0 text-white/55"
               />
               <span>{t(tag.key)}</span>
             </span>
@@ -37,7 +37,7 @@ export default function CtaFinal() {
 
         <div className="mt-12 flex flex-col gap-4 tablet:flex-row">
           <a href={contacts.waLink} target="_blank" rel="noopener" className={btnPrimary}>
-            <Icon name="whatsapp" className={btnIcon} style={{ stroke: 'none', fill: 'currentColor' }} />
+            <Icon name="whatsapp" className={btnIcon} />
             <span>{t('cta.whatsapp')}</span>
           </a>
           {contacts.telLink && (

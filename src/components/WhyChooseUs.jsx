@@ -1,4 +1,4 @@
-import { Icon } from './IconSprite';
+import { Icon } from './Icon';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
 import { container, section, sectionHead, eyebrowRule, sectionTitle } from '../styles/ui';
@@ -26,7 +26,7 @@ export default function WhyChooseUs() {
           {REASONS.map((reason, i) => (
             <Reveal className="flex items-start gap-6" key={reason.icon} delay={Math.min(i * 0.05, 0.2)}>
               <div className="mt-0.5 shrink-0 text-ink">
-                <Icon name={reason.icon} className="h-[22px] w-[22px] shrink-0 stroke-current fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]" />
+                <Icon name={reason.icon} className="h-[22px] w-[22px] shrink-0" />
               </div>
               <div>
                 <h3 className="text-[clamp(18px,3vw,20px)] font-display font-bold">{t(reason.titleKey)}</h3>

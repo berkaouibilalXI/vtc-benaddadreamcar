@@ -20,9 +20,9 @@ export const btnBlock = 'w-full';
 export const btnIcon = 'w-[18px] h-[18px] shrink-0';
 
 export const linkCta = 'group inline-flex items-center gap-1.5 font-display text-[0.9rem] font-bold text-red';
-export const linkCtaIcon = 'h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-[3px]';
+export const linkCtaIcon =
+  'h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-[3px] rtl:group-hover:-translate-x-[3px]';
 
-export const iconDefault =
-  'w-6 h-6 shrink-0 stroke-current fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]';
+export const iconDefault = 'h-6 w-6 shrink-0';
 
 export const card = 'rounded-card border border-line bg-white shadow-card';

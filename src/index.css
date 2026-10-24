@@ -78,3 +78,19 @@
 .step-connector {
   background: repeating-linear-gradient(to bottom, #E7E5E1 0 4px, transparent 4px 8px);
 }
+
+/* ---------- Arabe (RTL) ---------- */
+html[lang='ar'] {
+  --font-display: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Cairo', Inter, sans-serif;
+}
+/* L'espacement entre lettres casse la liaison des lettres arabes */
+html[lang='ar'] * {
+  letter-spacing: 0 !important;
+}
+html[lang='ar'] :is(h1, h2, h3) {
+  line-height: 1.4;
+}
+html[lang='ar'] p {
+  line-height: 1.85;
+}

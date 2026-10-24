@@ -1,24 +1,24 @@
 import { Menu } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { LANG_PATHS } from '../data/config';
+import { LANGS, LANG_LABELS, LANG_NAMES } from '../data/pages';
 import { container, btnPrimary, btnSm, btnIcon } from '../styles/ui';
 
 const NAV_LINKS = [
-  { href: '#hero', key: 'nav.home' },
-  { href: '#services', key: 'nav.services' },
-  { href: '#fleet', key: 'nav.fleet' },
-  { href: '#partners', key: 'nav.partners' },
-  { href: '#contact', key: 'nav.contact' },
+  { hash: '#hero', key: 'nav.home' },
+  { hash: '#services', key: 'nav.services' },
+  { hash: '#fleet', key: 'nav.fleet' },
+  { hash: '#partners', key: 'nav.partners' },
+  { hash: '#contact', key: 'nav.contact' },
 ];
 
 export default function Navbar({ onOpenMenu }) {
-  const { t, lang, contacts } = useLanguage();
+  const { t, lang, paths, homeHref, contacts } = useLanguage();
 
   return (
-    <nav aria-label="Navigation principale / Main navigation" className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur-md">
+    <nav aria-label={t('nav.main')} className="sticky top-0 z-50 border-b border-line bg-white/90 backdrop-blur-md">
       <div className={`${container} flex h-16 items-center justify-start gap-3 sm:gap-6`}>
-        <a href="#hero" className="font-display text-[1.05rem] font-extrabold leading-none tracking-[0.02em]">
+        <a href={homeHref()} className="font-display text-[1.05rem] font-extrabold leading-none tracking-[0.02em]">
           <img src="/logo-black.webp" alt={t('nav.logoAlt')} width={75} height={52} />
         </a>
 
@@ -26,7 +26,7 @@ export default function Navbar({ onOpenMenu }) {
           {NAV_LINKS.map((link) => (
             <a
               key={link.key}
-              href={link.href}
+              href={homeHref(link.hash)}
               className="border-b-2 border-transparent py-2 transition-colors hover:border-red"
             >
               {t(link.key)}
@@ -34,22 +34,23 @@ export default function Navbar({ onOpenMenu }) {
           ))}
         </div>
 
-        <div className="ml-auto flex items-center gap-2 sm:gap-4">
+        <div className="ms-auto flex items-center gap-2 sm:gap-4">
           <div
             className="flex items-center overflow-hidden rounded-full border border-line font-display text-[0.8rem] font-bold"
             role="group"
-            aria-label="Langue / Language"
+            aria-label={t('nav.language')}
           >
-            {['fr', 'en'].map((code) => (
+            {LANGS.map((code) => (
               <Link
                 key={code}
-                to={LANG_PATHS[code]}
+                to={paths[code]}
                 hrefLang={code}
                 lang={code}
+                title={LANG_NAMES[code]}
                 aria-current={lang === code ? 'true' : undefined}
                 className={`px-3 py-[7px] ${lang === code ? 'bg-ink text-white' : 'text-grey-text'}`}
               >
-                {code.toUpperCase()}
+                {LANG_LABELS[code]}
               </Link>
             ))}
           </div>

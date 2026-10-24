@@ -1,4 +1,4 @@
-import { Icon } from './IconSprite';
+import { Icon } from './Icon';
 import MediaSlot from './MediaSlot';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
@@ -31,7 +31,7 @@ export default function Fleet() {
             <ul className="mt-6 flex flex-col gap-2.5">
               {FEATURES.map((key) => (
                 <li key={key} className="flex items-center gap-2.5 text-[clamp(13px,1.4vw,14px)] text-ink">
-                  <Icon name="check" className="h-4.5 w-4.5 shrink-0 stroke-red fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]" />
+                  <Icon name="check" className="h-4.5 w-4.5 shrink-0 text-red" />
                   <span>{t(key)}</span>
                 </li>
               ))}

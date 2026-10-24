@@ -1,4 +1,4 @@
-import { Icon } from './IconSprite';
+import { Icon } from './Icon';
 import Reveal from './Reveal';
 import { useLanguage } from '../context/LanguageContext';
 import { container, section, sectionHead, eyebrowRule, sectionTitle, sectionSub, btnPrimary } from '../styles/ui';

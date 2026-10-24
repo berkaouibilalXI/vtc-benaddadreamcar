@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite-react-ssg build",
+    "build": "node scripts/generate-sitemap.mjs && vite-react-ssg build",
     "lint": "oxlint",
     "preview": "vite preview",
     "images": "node scripts/optimize-images.mjs"
