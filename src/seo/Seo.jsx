@@ -38,6 +38,7 @@ export default function Seo() {
     sameAs: [config.INSTAGRAM_URL, config.RENTAL_URL],
     address: {
       '@type': 'PostalAddress',
+      streetAddress: 'Akid Lotfi',
       addressLocality: 'Bir El Djir',
       addressRegion: 'Oran',
       addressCountry: 'DZ',

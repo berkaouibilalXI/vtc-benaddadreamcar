@@ -2,7 +2,11 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="32x32" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#111111" />
   <!-- Titre, description, canonical, hreflang, Open Graph et JSON-LD : générés par page dans src/seo/Seo.jsx -->
@@ -22,6 +26,8 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&family=Cairo:wght@500;600;700;800&display=swap"
     />
   </noscript>
+  <!-- Sans JavaScript (robots de partage, lecteurs, JS bloqué) : afficher le contenu que les animations d'entrée cachent -->
+  <noscript><style>[style*="opacity:0"]{opacity:1!important}[style*="translate"]{transform:none!important}</style></noscript>
 </head>
 <body>
   <div id="root"></div>

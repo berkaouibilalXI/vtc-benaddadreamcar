@@ -4,6 +4,7 @@
  * Ajouter une page ou une langue dans pages.js suffit : le sitemap suit.
  */
 import { writeFile } from 'node:fs/promises';
+import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { LANGS, PAGE_IDS, PAGE_PATHS } from '../src/data/pages.js';
@@ -11,6 +12,15 @@ import { SITE_CONFIG } from '../src/data/config.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const site = SITE_CONFIG.SITE_URL;
+
+// <lastmod> = date du dernier commit (aujourd'hui si ce n'est pas un dépôt git) : il ne change
+// que lorsque le site change réellement, ce qui le rend fiable pour Google.
+let lastmod = new Date().toISOString().slice(0, 10);
+try {
+  lastmod = execSync('git log -1 --format=%cs', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim() || lastmod;
+} catch {
+  /* pas un dépôt git */
+}
 
 const PRIORITY = { home: { fr: '1.0', en: '0.8', ar: '0.8' } };
 
@@ -23,7 +33,7 @@ for (const id of PAGE_IDS) {
     ].join('\n');
     const priority = PRIORITY[id]?.[lang] ?? (lang === 'fr' ? '0.9' : '0.7');
     urls.push(
-      `  <url>\n    <loc>${site}${PAGE_PATHS[id][lang]}</loc>\n${alternates}\n    <changefreq>monthly</changefreq>\n    <priority>${priority}</priority>\n  </url>`,
+      `  <url>\n    <loc>${site}${PAGE_PATHS[id][lang]}</loc>\n    <lastmod>${lastmod}</lastmod>\n${alternates}\n    <changefreq>monthly</changefreq>\n    <priority>${priority}</priority>\n  </url>`,
     );
   }
 }
